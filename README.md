@@ -28,13 +28,13 @@ The gate fails if any of the following is true:
 Output: `PASS (10 declarations, standard axioms only)`.
 
 `tests/tamper.sh` plants six kinds of fake proof in scratch copies and checks that the gate
-rejects each one: a `sorry`; an axiom split across two lines; an `#eval` printing a fake axiom
+rejects each one (a rejection must exit nonzero and print the expected `FAIL` message): a `sorry`; an axiom split across two lines; an `#eval` printing a fake axiom
 report; a custom macro; a weakened statement (3-D De Gua without the orthogonality hypothesis: false.); and a genuine extra
 axiom with a long name, so that the report wraps over several lines.
 
 `code/` contains independent numerical checks (Python, exact or high-precision arithmetic) of the
-identities and of the hypotheses' necessity. `scratch/` contains the `#print axioms` runs recorded
-during development and cited in the paper.
+identities and of the hypotheses' necessity. `scratch/` contains the `#print axioms` driver files used during development; their recorded
+outputs, cited in the paper, are the `*.out` files there and the log files at the repository root.
 
 ## Build
 
