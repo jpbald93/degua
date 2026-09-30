@@ -1,0 +1,7 @@
+'DeGua.de_gua_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DeGua.de_gua' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DeGua.triAreaSq_eq_simplexVolSq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DeGua.de_gua_three_of_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DeGua.det_diagonal_add_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DeGua.det_mul_eq_sum_strictMono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DeGua.det_gram_eq_sum_sq_minors' depends on axioms: [propext, Classical.choice, Quot.sound]
