@@ -18,7 +18,7 @@
 export PATH="$HOME/.elan/bin:$PATH"
 cd "$(dirname "$0")" || exit 1
 LIB="DeGua"
-REQUIRED="DeGua.cross_sub_sq DeGua.de_gua DeGua.de_gua_three DeGua.de_gua_three_of_general DeGua.det_diagonal_add_const DeGua.det_gram_eq_sum_sq_minors DeGua.det_mul_eq_sum_strictMono DeGua.simplexVolSq DeGua.triAreaSq DeGua.triAreaSq_eq_simplexVolSq"
+REQUIRED="DeGua.cross_sub_sq DeGua.de_gua DeGua.de_gua_three DeGua.de_gua_three_of_general DeGua.det_diagonal_add_const DeGua.det_gram_eq_sum_sq_minors DeGua.det_mul_eq_sum_strictMono DeGua.simplexVolSq DeGua.triAreaSq DeGua.triAreaSq_eq_simplexVolSq DeGua.l14_de_gua_three DeGua.l14_de_gua DeGua.l14_det_diagonal_add_const DeGua.l14_cauchy_binet DeGua.l14_det_gram_eq_sum_sq_minors DeGua.l14w_de_gua_three DeGua.l14w_de_gua DeGua.l14w_cauchy_binet DeGua.l14b_corner_areas DeGua.l14b_corner_orth DeGua.Classical.cov_TriSimplex2_a_part DeGua.Classical.cov_TriSimplex2_a_coord_part DeGua.Classical.cov_TriSimplex2_b_part"
 SOURCES="$(find $LIB -name '*.lean' | sort | tr '\n' ' ') $LIB.lean"
 [ -e .lake/packages/mathlib ] || lake exe cache get || { echo "FAIL: could not fetch Mathlib cache"; exit 1; }
 if grep -nE "\bsorry\b|\badmit\b|native_decide|\baxiom\b|#eval|\brun_cmd\b|\binitialize\b|\bIO\b|\bdebug\.|\bmacro|\belab|\bsyntax\b|\bnotation\b|\binfix|\bprefix\b|\bpostfix\b|import Lean|open Lean|\bset_option\b" $SOURCES; then
@@ -26,7 +26,7 @@ if grep -nE "\bsorry\b|\badmit\b|native_decide|\baxiom\b|#eval|\brun_cmd\b|\bini
 build=$(lake build $LIB 2>&1); bstatus=$?
 printf '%s\n' "$build" | tail -3
 [ "$bstatus" -eq 0 ] || { printf '%s\n' "$build"; echo "FAIL: build"; exit 1; }
-chk=$(mktemp --suffix=.lean -p . .gatecheck_XXXX)
+chk=".gatecheck_$$.lean"
 trap 'rm -f "$chk"' EXIT
 { echo "import $LIB"; for t in $REQUIRED; do echo "#print axioms $t"; done; } > "$chk"
 out=$(lake env lean "$chk" 2>&1); status=$?
